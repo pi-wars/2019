@@ -1,5 +1,5 @@
 # Pi Wars 2019 Badge
-![Picture of Badge](Badge.jpg "Picture of Badge")
+![Picture of Badge](badge.jpg "Picture of Badge")
 
 ## Introduction
 The Pi Wars 2019 Badge has an ATmega chip on-board, which means that to program it, you will need to use Arduino C code.
