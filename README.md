@@ -2,6 +2,7 @@
 Code and documentation for Pi Wars 2019.
 
 ![Pi Wars logo](logo.png "Pi Wars logo")
+![4tronix logo](4tronix.jpg)
 
 For 2019, we have issued competitors with [Pi Wars Badges](Badge/). These have been designed and produced by Gareth over at
 [4tronix](https://shop.4tronix.co.uk/).
