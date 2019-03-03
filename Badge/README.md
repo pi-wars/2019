@@ -1,1 +1,1 @@
-# Pi Wars 2019 - Badge
+# Pi Wars 2019 Badge
