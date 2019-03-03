@@ -1,5 +1,5 @@
 # Pi Wars 2019 Trophy
-![Picture of trophy](badge.jpg "Picture of trophy")
+![Picture of trophy](trophy.jpg "Picture of trophy")
 
 ## Introduction
 The Pi Wars 2019 trophy has an ATmega chip on-board, which means that to program it, you will need to use Arduino C code.
@@ -50,7 +50,7 @@ Generally you can find these cables by explicitly searching, for example, on eBa
 You can download the sample sketch from the GitHub repository and then open it in the Arduino IDE. It is heavily commented and this
 should help you understand what's going on. Here are some notes on how the sample sketch works in terms of button presses and
 functionality:
-* If it correctly boots, the sketch will flash through primary colours and then settle.
+* On boot, the sketch will flash through primary colours and then settle.
 * The buttons are numbered 0-3, starting from the left.
 * Button 0 will start a Larson Scanner function. You should see red lights scanning back and forth. Pressing button 3 will
 stop the scanner.
