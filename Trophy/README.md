@@ -22,10 +22,10 @@ In order to take advantage of the LEDs and the OLED display on the trophy, you w
 Navigate using the main menu to:
 `Sketch->Include library->Manage libraries`
 
-Allow the list to update. Then search for *FastLED* by Daniel Garcia.
+Allow the list to update. Then search for `FastLED` by Daniel Garcia.
 Install it. (This allows you to program the LEDs).
 
-Search for *U8g2* by Oliver. Install it. (This allows you to control the OLED display)
+Search for `U8g2` by Oliver. Install it. (This allows you to control the OLED display)
 
 Then close the Manager.
 

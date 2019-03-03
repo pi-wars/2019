@@ -26,7 +26,7 @@ In order to take advantage of the LEDs on the trophy, you will need to install a
 Navigate using the main menu to:
 `Sketch->Include library->Manage libraries`
 
-Allow the list to update. Then search for *FastLED* by Daniel Garcia.
+Allow the list to update. Then search for `FastLED` by Daniel Garcia.
 Install it. (This allows you to program the LEDs).
 
 Then close the Manager.
