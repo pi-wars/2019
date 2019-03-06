@@ -60,6 +60,7 @@ should probably steer clear of this one! Pressing button 3 will stop it.
 it is bright. Any button will exit.
 * Button 3 will show a Rainbow Pattern back and forth on the LEDs. Button 2 will stop the Rainbow.
 * Pressing buttons 0 and 1 together will make the LEDs go light purple. This is just to show you how combining buttons can trigger alternative functions.
+* Pressing buttons 2 and 3 together will turn all the LEDs off.
 * LED brightness is controlled by the maxBrightness variable - this is set deliberately low to start with as the LEDs can be *very* bright!
 
 ## A disclaimer

@@ -91,6 +91,7 @@ void loop()
     // Set all LEDs to purple
     setAll(255,0,255);
     printMode("0 and 1", "All purple");
+    printStatus("");
 
     // This prints out the character list, but it also messes up the display. Re-instate if you'd like!
     /*
@@ -105,6 +106,13 @@ void loop()
       u8x8.print(buf);
     }
     */
+  }
+  // If buttons 2 and 3 are pressed together, clear everything
+  if (digitalRead(buttons[2])==1 && digitalRead(buttons[3])==1)
+  {
+    allOff();
+    printMode("2 and 3", "All off");
+    printStatus("");
   }
   // Other buttons pressed
   else if (digitalRead(buttons[0]) == 1)
@@ -131,6 +139,7 @@ void loop()
   {
     // Set all to blue
     setAll(0,0,255);
+    printStatus("");
     printMode("2", "All blue");
   }
   else if (digitalRead(buttons[3]) == 1)
@@ -157,10 +166,10 @@ void displayHeader(void)
 {
   u8x8.setCursor(0,0);
   u8x8.setFont(u8x8_font_pxplustandynewtv_f);
-  u8x8.print("Pi Wars 2019");
-  u8x8.setCursor(0,1);
-  u8x8.print("Trophy");
+  u8x8.draw2x2String(1, 0, "Pi Wars");
   u8x8.setCursor(0,2);
+  u8x8.print("      2019");
+  u8x8.setCursor(0,3);
   u8x8.print("================");
   u8x8.setFont(u8x8_font_chroma48medium8_r);
 }
@@ -168,7 +177,7 @@ void displayHeader(void)
 // Print out the light level, formatted
 void printLightLevel()
 {
-  u8x8.setCursor(0,3);
+  u8x8.setCursor(0,4);
   u8x8.print("Light: " + String(lightLevel) + "    ");
 }
 
@@ -176,18 +185,18 @@ void printLightLevel()
 void printMode(String button, String mode)
 {
   // Print first status line - which button has been pressed
-  u8x8.setCursor(0,4);
+  u8x8.setCursor(0,5);
   u8x8.print(blankLine);
-  u8x8.setCursor(0,4);
+  u8x8.setCursor(0,5);
   if (button == "-1")
     u8x8.print("Button: None");
   else
     u8x8.print("Button: " + button);
 
   // Print second status line - which mode we are in
-  u8x8.setCursor(0,5);
+  u8x8.setCursor(0,6);
   u8x8.print(blankLine);
-  u8x8.setCursor(0,5);
+  u8x8.setCursor(0,6);
   u8x8.print("Mode: " + mode);
 }
 
