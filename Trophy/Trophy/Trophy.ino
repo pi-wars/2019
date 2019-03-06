@@ -24,8 +24,8 @@ char buf[20];
 CRGB leds[NUM_LEDS];
 
 // Define brightness values and other variables
-int maxBrightness = 200;
-int newBrightness = 100;
+int maxBrightness = 20; // This can go MUCH higher for a brighter display, but watch your eyes!
+int newBrightness = 10;
 int wait = 200; // This is the delay in ms between LED colour changes for power up test
 
 // Define touch buttons
@@ -53,7 +53,7 @@ void setup()
 
   // Define how many LEDs we have and set initial brightness
   FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
-  FastLED.setBrightness(maxBrightness);  // sets the maximum brightness level. All values are scalled to fit in this range
+  FastLED.setBrightness(maxBrightness);  // sets the maximum brightness level. All values are scaled to fit in this range
   allOff();
 
   // After upload, we'll flash the LEDs different colours as a test
@@ -79,7 +79,7 @@ void loop()
   printLightLevel();
 
   // Work out what brightness we want based on the inverse of the light level
-  newBrightness = maxBrightness - lightLevel/2;
+  newBrightness = maxBrightness - lightLevel/10;
 
   // Set the brightness and show the LEDs
   FastLED.setBrightness(newBrightness);
