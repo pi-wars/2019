@@ -36,6 +36,9 @@ int buttons[NUM_BUTTONS] = {6,5,4,3};
 #define lightSensor A7
 int lightLevel=0;
 
+// Define something to blank an OLED line out
+String blankLine = "                ";
+
 void setup()
 {
   // Start up the OLED and clear it
@@ -65,7 +68,7 @@ void setup()
   allOff();
 
   // Initial display of "No button pressed"
-  printButton(-1, "None  ");
+  printMode("-1", "None");
 }
 
 // This function runs over and over, and is where you do the magic to light your leds.
@@ -82,10 +85,15 @@ void loop()
   FastLED.setBrightness(newBrightness);
   FastLED.show();
 
-  // If buttons 0 and 1 are pressed together, print out the character set
+  // If buttons 0 and 1 are pressed together...
   if (digitalRead(buttons[0])==1 && digitalRead(buttons[1])==1)
   {
+    // Set all LEDs to purple
     setAll(255,0,255);
+    printMode("0 and 1", "All purple");
+
+    // This prints out the character list, but it also messes up the display. Re-instate if you'd like!
+    /*
     for (int line=0; line<8; line++)
     {
       for (int i=0; i<16; i++)
@@ -96,35 +104,49 @@ void loop()
       u8x8.setCursor(0,line);
       u8x8.print(buf);
     }
+    */
   }
   // Other buttons pressed
   else if (digitalRead(buttons[0]) == 1)
   {
+    // Clear before switching to Larson scanner
     setAll(0,0,0);
-    printButton(0, "Red   ");
+    printMode("0", "Larson");
+    // Trigger the Larson scanner
     larson(255, 0, 0, 3, 75, 50);
+    // Clear on exit from Larson
     setAll(0,0,0);
   }
   else if (digitalRead(buttons[1]) == 1)
   {
+    // Clear before switchign to Broadway
+    setAll(0,0,0);
+    printMode("1", "Broadway");
+    // Trigger Broadway mode
     broadway(255, 255, 255, 200);
+    // Clear on exit from Broadway
     setAll(0,0,0);
   }
   else if (digitalRead(buttons[2]) == 1)
   {
+    // Set all to blue
     setAll(0,0,255);
-    printButton(2, "Blue  ");
+    printMode("2", "All blue");
   }
   else if (digitalRead(buttons[3]) == 1)
   {
-    setAll(0,0,255);
-    printButton(3, "R'bow ");
+    // Clear all before Rainbow
+    setAll(0,0,0);
+    printMode("3", "Rainbow");
 
+    // Set some variables to configure the rainbow cycle
     int wait = 5;
     int dim = 3;
-    printStatus("R'bow started");
+    printStatus("R'bow start");
+    // Start rainbow
     rainbowCycle(wait, dim);
-    printStatus("R'bow finished");
+    printStatus("R'bow finish");
+    // Clear on exit from rainbow
     setAll(0,0,0);
   }
   delay(200);
@@ -151,20 +173,29 @@ void printLightLevel()
 }
 
 // Print out what button is pressed and which colour the LEDs are
-void printButton(int button, String colour)
+void printMode(String button, String mode)
 {
+  // Print first status line - which button has been pressed
   u8x8.setCursor(0,4);
-  if (button == -1)
-    u8x8.print("Button:    ");
+  u8x8.print(blankLine);
+  u8x8.setCursor(0,4);
+  if (button == "-1")
+    u8x8.print("Button: None");
   else
-    u8x8.print("Button: " + String(button));
+    u8x8.print("Button: " + button);
+
+  // Print second status line - which mode we are in
   u8x8.setCursor(0,5);
-  u8x8.print("Colour: " + colour);
+  u8x8.print(blankLine);
+  u8x8.setCursor(0,5);
+  u8x8.print("Mode: " + mode);
 }
 
 // Print a message on the 8th line
 void printStatus(String msg)
 {
+  u8x8.setCursor(0,7);
+  u8x8.print(blankLine);
   u8x8.setCursor(0,7);
   u8x8.print(msg);  
 }
@@ -191,12 +222,12 @@ void setAll(int red, int green, int blue)
 }
 
 void broadway(int red, int green, int blue, int speed) {
-  printStatus("Broadway start    ");
+  printStatus("B'way start");
   setAll(0,0,0);
 
   while (1) {
     for (int j=0; j<NUM_LEDS; j=j+2) {
-      printStatus(String(j));
+      // DEBUG printStatus(String(j));
       setPixel(j, red, green, blue);
     }
     FastLED.show();
@@ -205,7 +236,7 @@ void broadway(int red, int green, int blue, int speed) {
     setAll(0,0,0);
 
     for (int j=1; j<NUM_LEDS; j=j+2) {
-      printStatus(String(j));
+      // DEBUG printStatus(String(j));
       setPixel(j, red, green, blue);
     }
     FastLED.show();
@@ -213,8 +244,8 @@ void broadway(int red, int green, int blue, int speed) {
     delay(speed);
     setAll(0,0,0);
 
-    if (digitalRead(buttons[0]) == 1) {
-      printStatus("Broadway exit    ");
+    if (digitalRead(buttons[3]) == 1) {
+      printStatus("B'way exit");
       return;
     }
   }
@@ -222,9 +253,10 @@ void broadway(int red, int green, int blue, int speed) {
 
 // Creates a Larson/Cylon scanner which scans along the top, then along the bottom, then it rebounds and reverses
 void larson(int red, int green, int blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
-  printStatus("Larson started");
+  printStatus("Larson start");
 
   while(1) {
+    // Go one way...
     for(int i = 0; i < NUM_LEDS-EyeSize-2; i++) {
       setAll(0,0,0);
       setPixel(i, red/10, green/10, blue/10);
@@ -235,14 +267,17 @@ void larson(int red, int green, int blue, int EyeSize, int SpeedDelay, int Retur
       FastLED.show();
       delay(SpeedDelay);
 
+      // If button 4 is pressed, exit from function
       if (digitalRead(buttons[3]) == 1) {
-        printStatus("Larson exit    ");
+        printStatus("Larson exit");
         return;
       }
     }
-  
+
+    // Pause
     delay(ReturnDelay);
-  
+
+    // Go the other way
     for(int i = NUM_LEDS-EyeSize-2; i > 0; i--) {
       setAll(0,0,0);
       setPixel(i, red/10, green/10, blue/10);
@@ -253,15 +288,16 @@ void larson(int red, int green, int blue, int EyeSize, int SpeedDelay, int Retur
       FastLED.show();
       delay(SpeedDelay);
 
+      // If button 4 is pressed, exit from function
       if (digitalRead(buttons[3]) == 1) {
-        printStatus("Larson exit    ");
+        printStatus("Larson exit");
         return;
       }
     }
     
     delay(ReturnDelay);
   }
-  printStatus("Larson finished");
+  printStatus("Larson fin'd");
 }
 
 // Set a specific pixel to a specific colour. For some reason, the colour specification is messed up
@@ -291,6 +327,7 @@ void rainbowCycle(int wait, int dim) {
         CRGB ledColor = wheel(((i * 256 / NUM_LEDS) + (dir==0?j:k)) % 256,dim);        
         leds[i]=ledColor;
 
+        // If button 3 is pressed, exit from the function
         if (digitalRead(buttons[2]) == 1) {
           return;
         }

@@ -55,11 +55,11 @@ functionality:
 * Button 0 will start a Larson Scanner function. You should see red lights scanning back and forth. Pressing button 3 will
 stop the scanner.
 * Button 1 will start a Broadway Lights function. You should see white lights flashing. If you're susceptible to flashing lights, you
-should probably steer clear of this one! Pressing button 0 will stop it.
+should probably steer clear of this one! Pressing button 3 will stop it.
 * Button 2 will just show blue lights. These will be brighter when the light sensor in the eye of the Robot is in the dark and dimmer when
 it is bright. Any button will exit.
 * Button 3 will show a Rainbow Pattern back and forth on the LEDs. Button 2 will stop the Rainbow.
-* Pressing buttons 0 and 1 together will make the LEDs go pink and also show the "character set" of the current font on the display.
+* Pressing buttons 0 and 1 together will make the LEDs go light purple. This is just to show you how combining buttons can trigger alternative functions.
 
 ## A disclaimer
 I, Mike Horne (@recantha) wrote the majority of this code. I am not the world's best Arduino/microcontroller programmer, so there's bound
