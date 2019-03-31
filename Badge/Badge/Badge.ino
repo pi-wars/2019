@@ -21,7 +21,7 @@
 
 #include "FastLED.h"
 
-#define DEBUG         true
+#define DEBUG         false
 //#define REV4
 
 // LED Display 
