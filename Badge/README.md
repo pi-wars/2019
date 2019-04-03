@@ -12,6 +12,10 @@ You'll notice that the Badge robot has a bit of a 'tail'. This breaks out some o
 of the Badge as the driver for some add-ons available from 4tronix. You could also solder directly onto them if you so wish.
 Bear in mind that the pins on one side are different from those on the other so you can't use crocodile clips!
 
+## Accessories
+A variety of accessories are available for the Badge. [These are available from the 4tronix website](https://shop.4tronix.co.uk/pages/search-results-page?q=piwars)
+![Picture of Badge accessory](badge_accessory.jpg "Picture of Badge accessory")
+
 ## Installing the Arduino IDE
 [Download the Arduino IDE for your computer from the Arduino website](https://www.arduino.cc/en/main/software)
 
