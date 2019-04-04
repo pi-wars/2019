@@ -16,6 +16,10 @@ Bear in mind that the pins on one side are different from those on the other so 
 A variety of accessories are available for the Badge. [These are available from the 4tronix website](https://shop.4tronix.co.uk/pages/search-results-page?q=piwars)
 ![Picture of Badge accessory](badge_accessory.jpg "Picture of Badge accessory")
 
+## Complete beginners guide
+Below are instructions on how to use the Arduino development environment to program your badge. If you struggle with the way this is written, [try this guide, written by David Pride](http://www.piandchips.co.uk/uncategorized/getting-started-with-your-piwars-badge/)
+which says things in a different way.
+
 ## Installing the Arduino IDE
 [Download the Arduino IDE for your computer from the Arduino website](https://www.arduino.cc/en/main/software)
 
